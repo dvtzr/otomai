@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 44: choice menuitem expects a non-empty block.
-    "אני גם אוהב פפסי":
-                       ^
-
-File "game/script.rpy", line 47: Line is indented, but the preceding jump statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
-    "אני לא אוהב פפסי":
-    ^
+File "game/script.rpy", line 15: unexpected EOF while parsing
+    False;
+          ^
 
 Ren'Py Version: Ren'Py 8.3.2.24090902
-Sat Sep 28 09:59:45 2024
+Mon Nov  4 18:33:58 2024
