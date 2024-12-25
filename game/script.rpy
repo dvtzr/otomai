@@ -7,74 +7,126 @@ init python:
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define ao = Character("אאוי", color="#5e9cff")
-define sh = Character("שירו", color="#ffffff")
-define ak = Character("אקאי", color="#ff0000")
+define ao = Character("אאוי", color="#5e9cff", image = "aoi")
+define sh = Character("שירו", color="#ffffff", image = "shiro")
+define ak = Character("אקאי", color="#ff0000", image = "akai")
 define p = Character("אתם", color= "#80ff75")
 default ending_progress = 0
 default secret_ending = False
 default persistent.aoi_ending = False
 default persistent.shiro_ending = False
 default persistent.akai_ending = False
+
+# tranforms: 
+transform left_to_right:
+    yalign 1.0
+    easein_bounce 3 xalign 1.0
+    pause 0.5
+    ease 3 xalign .1
+    pause 0.5
+    repeat
+
 # The game starts here.
-
-
 label start:
+
+    ## Disclaimers
+
+    "היי, כאן צוות הווי ובידור אמא''י!"
+
+    "תודה רבה לכם שהחלטתם לשחקן במשחק שלנו ואנחנו מקווים שתהנו ממנו כמו שאנחנו נהננו להכין אותו."
+
+    "לתשומת ליבכם והבנתכם: דמות השחקן במשחק מיוצגת כדמות בן על מנת להקל על יצירת המשחק."
     
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
+    jump intro_scene
 
-    scene bg_train_station
-
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
-
-    show spr_aoi_test
-    with dissolve
-    play music bgm_normal
-
-    # These display lines of dialogue.
-
-    ao "וואה וואה מה זה פה"
-
-    ao "מה קורה פה"
-
-    ao "איך אני אוהבת {color=#f00}לבדוק אם סופים עובדים{/color}"
-
-    p "מה באמת?"
-
-    p "ואם אני רוצה לבחור עם מי אני רוצה להיות?"
-
-    menu:
-        "אאוי":
-            jump aoi_route
+    ## Introduction
+    label intro_scene:
         
-        "שירו":
-            jump shiro_route
+        # show train brackground
+        scene bg_train_station
 
-        "אקאי":
-            jump akai_route
+        "בוקר טוב שחקן!"
 
-        "אופציה רביעית סודית" if persistent.aoi_ending and persistent.shiro_ending and persistent.akai_ending:
-            jump secret_route
+        "ואיזה בוקר זה באמת, בוקר הכנס! הכנס הראשון שלך!"
+
+        # get player name input (irrelevant)
+        python:
+            renpy.input("מי אתה שחקן יקר ומה השם שלך?",length = 32)
+        
+        "תודה רבה! לא נשתמש בזה, אבל טוב לדעת שאתה מוכן לשיתוף פעולה!"
+
+        "ההתרגשות באוויר והפרפרים בבטן כבר משתוללים. "
+
+        "הדרך המהירה ביותר לכנס היא הרכבת, זה למה אתה כאן. בתחנת הרכבת." 
+
+        p "סוף סוף הגיע הזמן שלי ללכת לאירוע הכי מדהים, כנס האנימה!"
+
+        p "הרכבת שלי פה עוד 5 דקות, כל מה שאני צריך לעשות זה לשבת בשקט, לשמוע מוזיקה, ולרדת מהרכבת."
+
+        # (note : train sound here)
+        play sound sfx_train_arrive volume 0.25
+
+        p "מקווה שיהיה לי מקום ישיבה, מרגיש שכל עם ישראל כאן..!"
+
+        "הרכבת נכנסת לתחנה ונראה שצדקת, בקושי יש מקום."
+
+        "הצלחת למצוא את דרכך לקרון ריק יחסית לשאר הרכבת."
+
+        # (note : train sound here)
+        play sound sfx_train_door_open volume 0.5
+        play music bgm_normal
+
+        scene bg_inside_train
+
+        "התיישבת והתחלת להתמקם, סך הכל מקום די סבבה."
+
+        "לפתע עולים לקרון בו אתה נמצא שלושה אנשים עם שיער בצבע מוזר."
+
+        "וואי! כנראה שהם גם באים לכנס! יש להם חזות של אוהבי אנימה, אולי זה השיער בצבעים?"
+        
 
 
+
+        show aoi at left_to_right
+        with dissolve
+        
+
+        # These display lines of dialogue.
+
+        ao "וואה וואה מה זה פה"
+
+        ao "מה קורה פה"
+
+        ao "איך אני אוהבת {color=#f00}לבדוק אם סופים עובדים{/color}"
+
+        p "מה באמת?"
+
+        p "ואם אני רוצה לבחור עם מי אני רוצה להיות?"
+
+        menu:
+            "אאוי":
+                jump aoi_route
+            
+            "שירו":
+                jump shiro_route
+
+            "אקאי":
+                jump akai_route
+
+            "אופציה רביעית סודית" if persistent.aoi_ending and persistent.shiro_ending and persistent.akai_ending:
+                jump secret_route
+
+    ## Aoi Route
     label aoi_route:
         stop music fadeout 1.0
-        hide spr_aoi_test
-        show spr_aoi_happy
 
-        ao "שלום זאת אני אאוי"
+        ao happy "שלום זאת אני אאוי"
         ao "וזה הראוט המרגש שלי"
         ao "בוא נעשה בחירות"
         p "מה כמו כל ארבע ארבע שנים?"
         
-        hide spr_aoi_happy
-        show spr_aoi_angry
 
-        ao "לא יא טמבל"
+        ao angry "לא יא טמבל"
         ao "טוב בוא נראה"
         ao "תבחר"
 
@@ -116,18 +168,19 @@ label start:
             "סיום רע"
             return 
 
+    ## Shiro Route
     label shiro_route:
         stop music fadeout 1.0
-        hide spr_aoi_test
-        show spr_aoi_happy
+        hide aoi test
+        show aoi happy
 
         sh "שלום זה אני שירו"
         sh "וזה הראוט המרגש שלי"
         sh "בוא נעשה בחירות"
         p "אבל למה אתה נראה כמו אאוי בדיוק"
         
-        hide spr_aoi_happy
-        show spr_aoi_angry
+        hide aoi happy
+        show aoi angry
 
         sh "שתוק שתוק עדיין הספרייטים לא מוכנים"
         sh "טוב בוא נראה"
@@ -172,18 +225,19 @@ label start:
             "סיום רע"
             return 
 
+    ## Akai Route
     label akai_route:
         stop music fadeout 1.0
-        hide spr_aoi_test
-        show spr_aoi_happy
+        hide aoi test
+        show aoi happy
 
         ak "שלום זה אני אקאי"
         ak "וזה הראוט המרגש שלי"
         ak "בוא נעשה בחירות"
         p "אבל למה אתה נראה כמו אאוי בדיוק"
         
-        hide spr_aoi_happy
-        show spr_aoi_angry
+        hide aoi happy
+        show aoi angry
 
         ak "שתוק שתוק עדיין הספרייטים לא מוכנים"
         ak "טוב בוא נראה"
@@ -230,13 +284,13 @@ label start:
 
 
     label secret_route:
-        hide spr_aoi_test
-        show spr_aoi_happy
+        hide aoi test
+        show aoi happy
 
         ao "יאיייייי"
 
         stop music fadeout 1.0
-        hide spr_aoi_happy
+        hide aoi happy
         hide bg_train_station
 
         "סיום סודי"

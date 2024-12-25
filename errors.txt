@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 15: unexpected EOF while parsing
-    False;
-          ^
+File "game/screens.rpy", line 351: expected statement.
+    gui.show_name = False;
+                  ^
 
 Ren'Py Version: Ren'Py 8.3.2.24090902
-Mon Nov  4 18:33:58 2024
+Mon Dec  9 12:15:25 2024
