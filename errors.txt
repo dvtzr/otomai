@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 351: expected statement.
-    gui.show_name = False;
-                  ^
+File "game/aoi_route.rpy", line 1014: end of line expected.
+    jdg " זכה אילן בקוספליי ל\"רנג'י\" מ\"איש מכסחת הדשא הביתית\"!"""
+                                                                   ^
 
 Ren'Py Version: Ren'Py 8.3.2.24090902
-Mon Dec  9 12:15:25 2024
+Sun Jan  5 11:48:54 2025

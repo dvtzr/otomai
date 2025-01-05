@@ -1,42 +1,34 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "renpy/common/00start.rpy", line 216, in script call
-    call _load_reload_game from _call__load_reload_game_1
-  File "renpy/common/00keymap.rpy", line 548, in script
-    python hide:
-  File "renpy/common/00keymap.rpy", line 548, in <module>
-    python hide:
-  File "renpy/common/00keymap.rpy", line 559, in _execute_python_hide
-    renpy.load(renpy.session["_reload_slot"])
-Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
+  File "game/aoi_route.rpy", line 778, in script
+    with left_to_right
+TypeError: got an unexpected keyword argument 'old_widget'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/00start.rpy", line 216, in script call
-    call _load_reload_game from _call__load_reload_game_1
-  File "renpy/common/00keymap.rpy", line 548, in script
-    python hide:
-  File "E:\renpy-8.3.2-sdk\renpy\ast.py", line 821, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "E:\renpy-8.3.2-sdk\renpy\python.py", line 1178, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "renpy/common/00keymap.rpy", line 548, in <module>
-    python hide:
-  File "renpy/common/00keymap.rpy", line 559, in _execute_python_hide
-    renpy.load(renpy.session["_reload_slot"])
-  File "E:\renpy-8.3.2-sdk\renpy\loadsave.py", line 826, in load
-    log.unfreeze(roots, label="_after_load")
-  File "E:\renpy-8.3.2-sdk\renpy\rollback.py", line 1135, in unfreeze
-    self.rollback(0, force=True, label=label, greedy=greedy, on_load=True)
-  File "E:\renpy-8.3.2-sdk\renpy\rollback.py", line 930, in rollback
-    self.load_failed()
-  File "E:\renpy-8.3.2-sdk\renpy\rollback.py", line 848, in load_failed
-    raise Exception("Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?")
-Exception: Couldn't find a place to stop rolling back. Perhaps the script changed in an incompatible way?
+  File "game/aoi_route.rpy", line 778, in script
+    with left_to_right
+  File "E:\renpy-8.3.2-sdk\renpy\ast.py", line 1361, in execute
+    renpy.exports.with_statement(trans, paired=paired)
+  File "E:\renpy-8.3.2-sdk\renpy\exports\statementexports.py", line 257, in with_statement
+    return renpy.game.interface.do_with(trans, paired, clear=clear)
+  File "E:\renpy-8.3.2-sdk\renpy\display\core.py", line 1578, in do_with
+    return self.interact(trans_pause=True,
+  File "E:\renpy-8.3.2-sdk\renpy\display\core.py", line 2215, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "E:\renpy-8.3.2-sdk\renpy\display\core.py", line 2666, in interact_core
+    trans = instantiate_transition(None, old_root, layers_root)
+  File "E:\renpy-8.3.2-sdk\renpy\display\core.py", line 2575, in instantiate_transition
+    trans = self.ongoing_transition[layer](
+  File "E:\renpy-8.3.2-sdk\renpy\atl.py", line 623, in __call__
+    new_scope = signature.apply(args, kwargs, partial=True, apply_defaults=False)
+  File "E:\renpy-8.3.2-sdk\renpy\parameter.py", line 384, in apply
+    raise TypeError(
+TypeError: got an unexpected keyword argument 'old_widget'
 
 Windows-10-10.0.19045 AMD64
 Ren'Py 8.3.2.24090902
 Otomai 1.0
-Mon Dec  9 11:17:32 2024
+Sun Jan  5 11:52:39 2025
